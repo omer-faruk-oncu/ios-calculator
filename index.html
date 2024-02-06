@@ -5,42 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ios Calculator</title>
     <link rel="stylesheet" href="./style.css">
+    
+    <script>
+
+        function addToScreen(value) {
+          document.getElementById('screen').value += value;
+        }
+    
+        function calculate() {
+          var screenValue = document.getElementById('screen').value;
+          document.getElementById('screen').value = eval(screenValue);
+        }
+    
+        function clearScreen() {
+          document.getElementById('screen').value = '';
+        }
+
+        function toggleSign() {
+            var screen = document.getElementById('screen');
+            var currentValue = screen.value;
+            screen.value = currentValue.startsWith('-') ? currentValue.substring(1) : `-${currentValue}`;
+        }
+
+    </script>
+
 </head>
 <body>
     <div class="container">
         <header>
-            
-
+            <input type="text" id="screen" disabled>
         </header>
         <main>
             <div class="firstRow">
-                <button>AC</button>
-                <button>±</button>
-                <button>%</button>
-                <button id="bol">÷</button>
+                <button onclick="clearScreen()">AC</button>
+                <button onclick="toggleSign()">±</button>
+                <button onclick="addToScreen('%')">%</button>
+                <button onclick="addToScreen('/')" id="bol">÷</button>
+
             </div>
             <div class="secondRow">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button id="carp">x</button>
+                <button onclick="addToScreen('7')">7</button>
+                <button onclick="addToScreen('8')">8</button>
+                <button onclick="addToScreen('9')">9</button>                
+                <button onclick="addToScreen('*')" id="carp">x</button>
+
             </div>
             <div class="thirdRow">
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button id="minus">-</button>
+                <button onclick="addToScreen('4')">4</button>
+                <button onclick="addToScreen('5')">5</button>
+                <button onclick="addToScreen('6')">6</button> 
+                <button onclick="addToScreen('-')" id="minus">-</button>
             </div>
             <div class="fourthRow">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button id="plus">+</button>
+                <button onclick="addToScreen('1')">1</button>
+                <button onclick="addToScreen('2')">2</button>
+                <button onclick="addToScreen('3')">3</button>
+                <button onclick="addToScreen('+')" id="plus">+</button> 
             </div>
             <div class="fifthRow">
-                <button id="zero">0</button>
-                <button>.</button>
-                <button>=</button>
+                <button onclick="addToScreen('0')" id="zero">0</button>
+                <button onclick="addToScreen('.')">.</button>
+                <button onclick="calculate()">=</button>
             </div>
         </main>       
     </div>
